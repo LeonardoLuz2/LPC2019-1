@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ExerciciosAula03.Classes.Gerente
+﻿namespace ExerciciosAula03.Classes.Gerente
 {
     public interface IGerente
     {
