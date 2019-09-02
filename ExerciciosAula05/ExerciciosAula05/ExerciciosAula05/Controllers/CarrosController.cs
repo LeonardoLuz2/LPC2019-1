@@ -47,7 +47,7 @@ namespace ExerciciosAula05.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Modelo,Ano")] Carro carro)
+        public IActionResult Create([FromForm] Carro carro)
         {
             _repository.Add(carro);
             return RedirectToAction(nameof(Index));
@@ -70,7 +70,7 @@ namespace ExerciciosAula05.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([Bind("Id,Modelo,Ano")] Carro carro)
+        public IActionResult Edit([FromForm]Carro carro)
         {
             _repository.Update(carro);
             return RedirectToAction(nameof(Index));
