@@ -1,0 +1,101 @@
+﻿@model IEnumerable<AtividadeAvaliativa01.Models.Tarefa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Nova tarefa</a>
+</p>
+<h5>Tarefas em andamento</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prioridade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataLimite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PercentualConclusao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(x => x.PercentualConclusao < 100).OrderByDescending(x => x.Prioridade))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prioridade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataLimite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PercentualConclusao)%
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h5 class="mt-3">Tarefas concluídas</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prioridade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataLimite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PercentualConclusao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tarefa in Model.Where(x => x.PercentualConclusao >= 100))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => tarefa.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => tarefa.Prioridade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => tarefa.DataLimite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => tarefa.PercentualConclusao)%
+                </td>
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@tarefa.Id">Edit</a> |*@
+                    <a asp-action="Details" asp-route-id="@tarefa.Id">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@tarefa.Id">Deletar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
